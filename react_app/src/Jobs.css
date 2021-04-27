@@ -1,0 +1,7 @@
+.job-list h3 {
+    color: rgb(136, 5, 5) !important;
+}
+
+.job-list .item {
+    margin-top:10px;
+}

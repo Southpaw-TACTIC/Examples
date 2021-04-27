@@ -1,0 +1,11 @@
+.asset-list h3 {
+    color: rgb(136, 5, 5) !important;
+}
+
+.asset-list .item {
+    margin-top:10px;
+}
+
+.asset-list .asset-icon img {
+    max-width: 100%;
+}
