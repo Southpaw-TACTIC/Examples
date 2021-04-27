@@ -46,9 +46,6 @@ class App extends React.Component {
                 <li class="nav-item">
                   <Link to="/assets">Assets</Link>
                 </li>
-                <li class="nav-item">
-                  <Link to="/test">Test</Link>
-                </li>
               </ul>
             </div>
           </div>
