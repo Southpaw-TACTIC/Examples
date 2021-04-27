@@ -1,7 +1,5 @@
 import { TACTIC, spt } from "./assets/js/tactic";
 
-let PORTAL = true;
-
 let server_url = "https://portal.southpawtech.com"
 let site = "trial"
 let project = "api_test"
