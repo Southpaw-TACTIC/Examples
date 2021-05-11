@@ -1,0 +1,11 @@
+.job_asset-list h3 {
+    color: rgb(136, 5, 5) !important;
+}
+
+.job_asset-list .item {
+    margin-top:10px;
+}
+
+.job_asset-list .asset-icon img {
+    max-width: 100%;
+}

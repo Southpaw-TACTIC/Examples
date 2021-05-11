@@ -4,6 +4,7 @@ let server_url = "https://portal.southpawtech.com"
 let site = "trial"
 let project = "api_test"
 let user = "trial_api"
+user = 'trial_api'
 let password = "tactic123"
 
 let ticket = ""
@@ -43,6 +44,10 @@ const get_endpoint = () => {
 
 const get_server_url = () => {
     return server_url;
+}
+
+const get_project = () => {
+    return project
 }
 
 const get_server = () => {
@@ -95,4 +100,4 @@ const call_tactic = async (method, kwargs) => {
 
 }
 
-export { get_endpoint, get_ticket, call_tactic, get_server, get_server_url };
+export { get_endpoint, get_ticket, call_tactic, get_server, get_server_url, get_project };

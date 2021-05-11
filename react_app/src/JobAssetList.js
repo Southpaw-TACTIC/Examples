@@ -22,7 +22,7 @@ class AssetList extends React.Component {
 
     get_asset_info = async () => {
         let search_text = this.state.search_text
-        let search_type = "workflow/asset"
+        let search_type = "workflow/job_asset"
         let filters = [
             ['keywords', 'contains', search_text]
         ]
@@ -111,12 +111,12 @@ class AssetList extends React.Component {
 
     render() {
         return (
-            <div class="asset">
+            <div class="job_asset">
                 <div class="searchForm">
                     <input type="text" id="filter" placeholder="Search for..." onChange={this.handleInputChange}/>
                     <button onClick={e => this.get_asset_info()}>Search</button>
                 </div>
-                <div class="asset-list">
+                <div class="job_asset-list">
                     {
                         this.state.assets.map( (asset, index) => (
                             <div key="{asset.code}" class="card item">
