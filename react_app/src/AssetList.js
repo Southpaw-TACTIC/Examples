@@ -135,7 +135,7 @@ class AssetList extends React.Component {
                                                 <a href={get_server_url() + asset.snapshot.main[0]} target="_blank" rel="noopener noreferrer">
                                                 {
                                                     typeof asset.snapshot.web !=='undefined' ?
-                                                    <img src={get_server_url() + asset.snapshot.web[0]}  />
+                                                    <img src={get_server_url() + asset.snapshot.web[0]}  alt="snapshot" />
                                                     : "Download"
                                                 }
 
