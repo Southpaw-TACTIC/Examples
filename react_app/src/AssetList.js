@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState } from "react";
-import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+//import { useState } from "react";
+//import { useParams } from 'react-router';
+//import { Link } from 'react-router-dom';
 
 import { get_ticket, call_tactic, get_server, get_server_url, get_project } from "./Server";
 
@@ -31,8 +31,9 @@ class AssetList extends React.Component {
             filters: filters,
         };
         let ticket = await get_ticket()
+        console.log("AssetList.js - get_asset_info ticket: ", ticket);
         let sobjects = await call_tactic("query", kwargs)
-        console.log(sobjects)
+        console.log("AssetList.js - get_asset_info sobjects: ", sobjects)
 
         //nothing found
         if (sobjects.length <= 0) {
@@ -41,9 +42,9 @@ class AssetList extends React.Component {
         }
 
         const asset_codes = sobjects.map(element => element.code);
-        console.log(asset_codes); // [1, 2, 3]
+        console.log("AssetList.js - get_asset_info asset_codes: ", asset_codes); // [1, 2, 3]
         let asset_codes_str = asset_codes.join("|")
-        console.log(asset_codes_str)
+        console.log("AssetList.js - get_asset_info asset_codes_str: ",asset_codes_str)
 
         let asset_codes_filter = [
             ['search_code', 'in', asset_codes_str], ['is_latest', 'true'], ['project_code', get_project()]
@@ -58,7 +59,7 @@ class AssetList extends React.Component {
 
         //ticket = await get_ticket()
         let snapshots = await call_tactic("query_snapshots", kwargs)
-        console.log(snapshots)
+        console.log("AssetList.js - get_asset_info snapshots: ",snapshots)
 
         let obj = {}
         sobjects.forEach(function (a) {
@@ -131,10 +132,10 @@ class AssetList extends React.Component {
                                         <div>
                                             File:<br/>
                                             <div class="asset-icon">
-                                                <a href={get_server_url() + asset.snapshot.main[0]} target="_blank">
+                                                <a href={get_server_url() + asset.snapshot.main[0]} target="_blank" rel="noopener noreferrer">
                                                 {
                                                     typeof asset.snapshot.web !=='undefined' ?
-                                                    <img src={get_server_url() + asset.snapshot.web[0]}/>
+                                                    <img src={get_server_url() + asset.snapshot.web[0]}  />
                                                     : "Download"
                                                 }
 

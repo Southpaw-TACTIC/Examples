@@ -1,6 +1,6 @@
 import React from 'react';
 //import { useState } from 'react'
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 
 
 import {
@@ -21,8 +21,8 @@ class Test extends React.Component {
     let server = get_server()
     let expr = "@SOBJECT(workflow/job)";
     let jobs = server.eval(expr);
-    console.log("YYYYYYYYYYYYYYYYYYYYYYYYY")
-    console.log(jobs)
+    console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
+    console.log("test.js - load() jobs: ",jobs, "expr: ", expr, "server: ", server)
     this.setState({jobs: jobs})
   }
 

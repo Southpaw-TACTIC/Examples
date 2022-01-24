@@ -1,6 +1,6 @@
 import React from "react";
 //import { useState } from 'react'
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 
 import { Link } from "react-router-dom";
 
@@ -22,13 +22,14 @@ class Jobs extends React.Component {
 
   getJobs = async () => {
     let ticket = await get_ticket();
-
+    console.log("Jobs.js - getJobs ticket: ",ticket);
     //query for a list of jobs
     let search_type = "workflow/job";
     let kwargs = {
       search_type: search_type,
     };
     let sobjects = await call_tactic("query", kwargs);
+    console.log("Jobs.js - in getJobs  sobjects: ",sobjects);
     this.setState({ jobs: sobjects });
   };
 

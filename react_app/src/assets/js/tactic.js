@@ -2081,7 +2081,8 @@ class TacticServerStub {
 
 
     update_multiple = function(data, kwargs, on_complete, on_error) {
-        var newArgs = Array.prototype.slice.call(arguments).slice(0,2);
+        var newArgs = Array.prototype.slice.call(arguments).slice(0, 2);
+        console.log("tactic.js - update_multiple newArgs: ", newArgs);
         data = JSON.stringify(data);
         if(on_complete){
           if(!on_error){
@@ -2589,7 +2590,7 @@ class TacticServerStub {
         }
 
 
-        if (! this.transaction_ticket ) {
+        if (!this.transaction_ticket ) {
             throw("Login or transaction ticket is empty. Cannot proceed");
             //return;
         }
@@ -2853,7 +2854,7 @@ class TacticServerStub {
 
 
 
-var TACTIC = new TacticServerStub;
+var TACTIC = new TacticServerStub();
 
 
 

@@ -26,10 +26,10 @@ class JobDetails extends React.Component {
 
   getJob = async () => {
     let job_code = this.props.match.params.job_code
-    console.log(job_code)
+    console.log("JobDetails.js - getJob job_code: ",job_code)
 
     let ticket = await get_ticket()
-    console.log(ticket);
+    console.log("JobDetails.js - getJob ticket: ",ticket);
 
     //query for the job
     let search_type = "workflow/job"
@@ -38,7 +38,7 @@ class JobDetails extends React.Component {
         filters: [['code', job_code]],
     };
     let sobjects = await call_tactic("query", kwargs)
-    console.log(sobjects);
+    console.log("JobDetails.js - getJob sobjects: ",sobjects);
     this.setState({job: sobjects})
   }
 

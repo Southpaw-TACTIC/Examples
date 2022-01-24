@@ -11,17 +11,19 @@ let ticket = ""
 let base_endpoint = server_url+ "/" + site + "/" + project + "/REST";
 
 const get_ticket = async () => {
-    if (ticket != "") {
+    if (ticket !== "") {
         console.log("ticket exists:" + ticket)
         return ticket;
     }
     ticket = await generateTicket();
+    console.log("Server.js - get_ticket ticket: ", ticket);
     return ticket;
 }
 
 const generateTicket = async() => {
 
-    let url = base_endpoint + "/" + "get_ticket";
+    let url = base_endpoint + "/get_ticket";  //something is wrong with this
+    console.log("Sever.js - inside generateTicket url: ", url);
     let headers = {
         Accept: 'application/json'
     }
@@ -29,11 +31,13 @@ const generateTicket = async() => {
         'login': user,
         'password': password,
     };
+    console.log("Sever.js - inside generateTicket data: ", data);
     let r = await fetch( url, {
         method: 'POST',
         body: JSON.stringify(data),
     } )
     let ticket = await r.json()
+    console.log("Sever.js - inside generateTicket ticket: ", ticket);
     return ticket;
 }
 
@@ -56,7 +60,7 @@ const get_server = () => {
     server.set_site(site)
     server.set_project(project)
 
-    if (ticket != "") {
+    if (ticket !== "") {
         console.log("ticket exists:" + ticket)
         server.set_ticket(ticket);
         return server;
@@ -74,9 +78,9 @@ const get_server = () => {
 const call_tactic = async (method, kwargs) => {
 
     let data = kwargs
-
+    console.log("Server.js - inside call_tactic kwargs: ", kwargs);
     let url = get_endpoint() + "/" + method
-    console.log(ticket)
+    console.log("server.js - inside call_tactic ticket: ", ticket, "url: ", url);
 
     let headers = {
         "Authorization": "Bearer " + ticket,

@@ -4,6 +4,7 @@
 
 .asset-list .item {
     margin-top:10px;
+    background-color: cornflowerblue;
 }
 
 .asset-list .asset-icon img {

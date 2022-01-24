@@ -1,13 +1,13 @@
 import React from 'react'
-import { useState } from "react";
-import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+//import { useState } from "react";
+//import { useParams } from 'react-router';
+//import { Link } from 'react-router-dom';
 
 import { get_ticket, call_tactic, get_server, get_server_url, get_project } from "./Server";
 
-import './AssetList.css';
+import './JobAssetList.css';
 
-class AssetList extends React.Component {
+class JobAssetList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,9 +30,9 @@ class AssetList extends React.Component {
             search_type: search_type,
             filters: filters,
         };
-        let ticket = await get_ticket()
+        //let ticket = await get_ticket()
         let sobjects = await call_tactic("query", kwargs)
-        console.log(sobjects)
+        console.log("JobAssetList.js - getJob sobjects: ",sobjects)
 
         //nothing found
         if (sobjects.length <= 0) {
@@ -41,7 +41,7 @@ class AssetList extends React.Component {
         }
 
         const asset_codes = sobjects.map(element => element.code);
-        console.log(asset_codes); // [1, 2, 3]
+        console.log("JobAssetList.js - get_asset_info asset_codes: ",asset_codes); // [1, 2, 3]
         let asset_codes_str = asset_codes.join("|")
         console.log(asset_codes_str)
 
@@ -131,10 +131,10 @@ class AssetList extends React.Component {
                                         <div>
                                             File:<br/>
                                             <div class="asset-icon">
-                                                <a href={get_server_url() + asset.snapshot.main[0]} target="_blank">
+                                                <a href={get_server_url() + asset.snapshot.main[0]} target="_blank" rel="noopener noreferrer">
                                                 {
                                                     typeof asset.snapshot.web !=='undefined' ?
-                                                    <img src={get_server_url() + asset.snapshot.web[0]}/>
+                                                    <img src={get_server_url() + asset.snapshot.web[0]} alt="snapshot" />
                                                     : "Download"
                                                 }
 
@@ -153,4 +153,4 @@ class AssetList extends React.Component {
     }
   }
 
-export default AssetList;
+export default JobAssetList;

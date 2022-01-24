@@ -4,6 +4,7 @@
 
 .job_asset-list .item {
     margin-top:10px;
+    background-color: bisque;
 }
 
 .job_asset-list .asset-icon img {
