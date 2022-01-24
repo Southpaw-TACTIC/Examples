@@ -239,7 +239,7 @@ spt.Environment = function() {
 
     this.read_cookie = function(key) {
         if (typeof(document) !== 'undefined') {
-            var value = document.cookie.match('(?:^|;)\\s*' + key.replace(/([-.*+?^${}()|[\]\/\\])/g, '\\$1') + '=([^;]*)');
+            var value = document.cookie.match('(?:^|;)\\s*' + key.replace(/([-.*+?^${}()|[\]\\])/g, '\\$1') + '=([^;]*)');
                     return (value) ? decodeURIComponent(value[1]) : null;
         }
         else return null;
@@ -463,7 +463,7 @@ AjaxService.prototype.invoke = function( method, arguments2 )
  */
 AjaxService.prototype.getMessage = function( method, arguments2 )
 {
-    if ( arguments2 === null ) {
+    if (arguments2 === null) {
         arguments2 = new Array();
     }
 
@@ -723,7 +723,7 @@ class TacticServerStub {
     server = null;
 
 
-    constructor() {}
+    //constructor() {}
 
 
 
@@ -859,9 +859,9 @@ class TacticServerStub {
             var site = parts[3];
         }
         else {
-            var login_ticket = parts[5];
-            var hash = parts[4];
-            var project = parts[3];
+             login_ticket = parts[5];
+             hash = parts[4];
+             project = parts[3];
         }
 
         if (hash !== "ticket" && hash !== "login_ticket") {
@@ -948,7 +948,7 @@ class TacticServerStub {
         if (search_key.test(/&/))
             var tmps = search_key.split('&');
         else
-            var tmps = search_key.split('?');
+             tmps = search_key.split('?');
         var codes = tmps[1].split('=')
         //assert len(codes) === 2;
         list.push(tmps[0]);
@@ -1214,7 +1214,7 @@ class TacticServerStub {
         if (typeof(kwargs) === "undefined") {
             kwargs = {__empty__:true};
         }
-        var mode_options = ['upload','uploaded', 'copy', 'move', 'inplace','local'];
+        //var mode_options = ['upload','uploaded', 'copy', 'move', 'inplace','local'];
         var mode = kwargs['mode'];
         if (mode === undefined) mode = "upload";
         if (typeof(file_path) !== 'string') {
@@ -1226,7 +1226,7 @@ class TacticServerStub {
             // put in a check for Perforce for the moment because file.exists()
             // is very slow when looking for //depot
             if (file_path.substr(0, 2) !== '//') {
-                var applet = spt.Applet.get();
+                 applet = spt.Applet.get();
                 if (applet.is_dir(file_path)){
                     alert('[' + file_path + '] is a directory. Exiting...');
                     return;
@@ -1293,8 +1293,8 @@ class TacticServerStub {
         var files = snapshot['__file_sobjects__'];
 
         if (mode === 'local') {
-            var applet = spt.Applet.get();
-            var files = this.eval("@SOBJECT(sthpw/file)", {search_keys:snapshot});
+             applet = spt.Applet.get();
+             files = this.eval("@SOBJECT(sthpw/file)", {search_keys:snapshot});
             var base_dirs = this.get_base_dirs();
             var client_repo_dir = base_dirs.win32_local_repo_dir;
             if (typeof(client_repo_dir) === 'undefined' || client_repo_dir === '')
@@ -1333,7 +1333,7 @@ class TacticServerStub {
         // default is "uploaded"??
         //if (typeof(mode) === 'undefined') mode = 'copy';
 
-        var mode_options = ['upload', 'copy', 'move'];
+       // var mode_options = ['upload', 'copy', 'move'];
         if (typeof(mode) !== "undefined") {
             //if mode not in mode_options:
             //    raise TacticApiException('Mode must be in %s' % mode_options);
@@ -1342,7 +1342,7 @@ class TacticServerStub {
             //dir = os.path.dirname(file_path)
             var handoff_dir = this.get_handoff_dir();
 
-            var use_handoff_dir;
+          //  var use_handoff_dir;
 
             var expanded_paths;
             if (typeof(file_path) === 'object') {
@@ -1360,18 +1360,18 @@ class TacticServerStub {
                     let applet = spt.Applet.get();
                     applet.move_file(path, handoff_dir+'/'+basename);
                 }
-                use_handoff_dir = true;
+              //  use_handoff_dir = true;
                 mode = 'create';
             }
             else if (mode === 'copy') {
                 for (let i = 0; i < expanded_paths.length; i++) {
-                    var path = expanded_paths[i];
-                    var parts = path.split(/[\/\\]/);
-                    var basename = parts[parts.length-1];
+                     path = expanded_paths[i];
+                     parts = path.split(/[\\]/);
+                     basename = parts[parts.length-1];
                     let applet = spt.Applet.get();
                     applet.copy_file(path, handoff_dir+'/'+basename);
                 }
-                use_handoff_dir = true;
+              //  use_handoff_dir = true;
                 mode = 'create';
             }
             // use a custom protocol
@@ -1382,9 +1382,9 @@ class TacticServerStub {
                     return "No command defined";
                 }
                 for (let i = 0; i < expanded_paths.length; i++) {
-                    var path = expanded_paths[i];
-                    var parts = path.split(/[\/\\]/);
-                    var basename = parts[parts.length-1];
+                     path = expanded_paths[i];
+                     parts = path.split(/[\\]/);
+                     basename = parts[parts.length-1];
                     let applet = spt.Applet.get();
                     let actual = command;
                     actual = actual.replace("%s", path);
@@ -1394,17 +1394,17 @@ class TacticServerStub {
                     applet.makedirs(handoff_dir);
                     applet.exec(actual);
                 }
-                use_handoff_dir = true;
+              //  use_handoff_dir = true;
 
 
             }
             else if (mode === 'upload') {
                 let applet = spt.Applet.get();
                 for (let i = 0; i < expanded_paths.length; i++) {
-                    var path = expanded_paths[i];
+                     path = expanded_paths[i];
                     applet.upload_file(path);
                 }
-                use_handoff_dir = false;
+              //  use_handoff_dir = false;
             }
         }
 
@@ -1437,7 +1437,7 @@ class TacticServerStub {
         }
 
         // remove trailing / or \
-        dir = dir.replace(/[\/\\]+$/, '');
+        dir = dir.replace(/[\\]+$/, '');
         // replace all slashes
         dir = dir.replace(/\\/g, "/");
 
@@ -1448,8 +1448,8 @@ class TacticServerStub {
             applet.exec("chmod 777 " + handoff_dir);
 
             // copy or move the tree
-            var parts = dir.split(/[\/\\]/);
-            var dirname = parts.splice(0, parts.length-1).join("/");
+            var parts = dir.split(/[\\]/);
+           // var dirname = parts.splice(0, parts.length-1).join("/");
             var basename = parts[parts.length-1];
 
             if (mode === 'move') {
@@ -1463,7 +1463,7 @@ class TacticServerStub {
             mode = 'create';
         }
         else if (mode === 'upload') {
-            var files = applet.upload_directory(dir);
+           // var files = applet.upload_directory(dir);
             kwargs.use_handoff_dir = false;
 
         }
@@ -1513,10 +1513,10 @@ class TacticServerStub {
             applet.makedirs(handoff_dir);
 
             // remove trailing / or \
-            dir = dir.replace(/[\/\\]+$/, '');
+            dir = dir.replace(/[\\]+$/, '');
 
             // copy or move the tree
-            var parts = dir.split(/[\/\\]/);
+            var parts = dir.split(/[\\]/);
             var basename = parts[parts.length-1];
 
             if (mode === 'move') {
@@ -1697,7 +1697,7 @@ class TacticServerStub {
         var to_paths = [];
 
         var applet = spt.Applet.get();
-        var env = spt.Environment.get();
+        //var env = spt.Environment.get();
         try {
             for (let i=0; i < client_lib_paths.length; i++){
                 var client_lib_path = client_lib_paths[i];
@@ -1706,16 +1706,16 @@ class TacticServerStub {
                     var filename = spt.path.get_basename(to_path);
                 }
                 else {
-                    var filename = spt.path.get_basename(client_lib_path);
+                    filename = spt.path.get_basename(client_lib_path);
                     if (!to_dir)
                         throw("If to_sandbox_dir is set to false, you have to provide a directory for to_dir");
 
-                    var to_path = to_dir + '/' + filename;
+                   to_path = to_dir + '/' + filename;
                 }
                 to_paths.push(to_path);
 
                 // copy the file from the repo
-                var to_dir = spt.path.get_dirname(to_path);
+                to_dir = spt.path.get_dirname(to_path);
                 if (applet.exists(to_dir) === false)
                     applet.makedirs(to_dir);
 
@@ -2591,7 +2591,7 @@ class TacticServerStub {
 
 
         if (!this.transaction_ticket ) {
-            throw("Login or transaction ticket is empty. Cannot proceed");
+            throw(spt.status);
             //return;
         }
 
@@ -2716,7 +2716,7 @@ class TacticServerStub {
                     on_error("Cannot connect to server: status returned is ["+request.status+"]")
                 }
                 else
-                    throw("status is " + request.status);
+                    throw( request.status);
             }
         }
     }
@@ -2758,7 +2758,7 @@ class TacticServerStub {
             return value;
         }
         else {
-            var value = this._parse_result(ret_val, func_name);
+             value = this._parse_result(ret_val, func_name);
             return value;
         }
     }
@@ -2821,7 +2821,7 @@ class TacticServerStub {
             if (func_name !== 'start') {
 
                 ret_val = ret_val.responseText;
-                var patt = /faultCode/g;
+                 patt = /faultCode/g;
                 if(patt.test(ret_val)) {
                     // Value has the error
                     //spt.exception.handle_fault_response( value );
