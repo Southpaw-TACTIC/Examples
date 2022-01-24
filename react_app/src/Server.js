@@ -1,4 +1,4 @@
-import { TACTIC, spt } from "./assets/js/tactic";
+import { TACTIC } from "./assets/js/tactic";
 
 let server_url = "https://portal.southpawtech.com"
 let site = "trial"
@@ -24,9 +24,9 @@ const generateTicket = async() => {
 
     let url = base_endpoint + "/get_ticket";  //something is wrong with this
     console.log("Sever.js - inside generateTicket url: ", url);
-    let headers = {
-        Accept: 'application/json'
-    }
+    // let headers = {
+    //     Accept: 'application/json'
+    // }
     let data = {
         'login': user,
         'password': password,
@@ -93,12 +93,12 @@ const call_tactic = async (method, kwargs) => {
         body: JSON.stringify(data),
     } )
 
-    if (r.status == 200) {
+    if (r.status === 200) {
         let ret = await r.json();
         return ret;
     }
     else {
-        throw("ERROR: " + r.statusText);
+        throw(r.statusText);
     }
 
 }

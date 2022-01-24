@@ -7,7 +7,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-import { get_ticket, get_endpoint, get_server } from "./Server";
+import { /*get_ticket, get_endpoint,*/ get_server } from "./Server";
 
 class Test extends React.Component {
   constructor(props) {

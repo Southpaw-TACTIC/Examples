@@ -3,7 +3,7 @@ import React from 'react'
 //import { useParams } from 'react-router';
 //import { Link } from 'react-router-dom';
 
-import { get_ticket, call_tactic, get_server, get_server_url, get_project } from "./Server";
+import {  call_tactic, get_server, get_server_url, get_project } from "./Server";
 
 import './JobAssetList.css';
 

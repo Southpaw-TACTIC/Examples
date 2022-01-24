@@ -47,7 +47,7 @@ class JobDetails extends React.Component {
     let job_code = this.props.match.params.job_code
 
     let ticket = await get_ticket()
-
+    console.log("JobDetails.js - getTasks ticket: ",ticket);
     // get tasks
     let search_type = "sthpw/task"
     let kwargs = {
@@ -55,7 +55,7 @@ class JobDetails extends React.Component {
         filters: [['search_code', job_code]],
     };
     let sobjects = await call_tactic("query", kwargs)
-    console.log(sobjects);
+    console.log("JobDetails.js - getTasks sobjects: ",sobjects);
     this.setState({tasks: sobjects})
 
   }
