@@ -1,19 +1,15 @@
 import React from 'react';
-//import { useState } from 'react'
-//import ReactDOM from 'react-dom';
 
+import { Link }  from 'react-router-dom';
 
-import {
-  Link,
-} from 'react-router-dom';
-
-import { /*get_ticket, get_endpoint,*/ get_server } from "./Server";
+import {  get_server } from "./Server";
 
 class Test extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      jobs: []
+      jobs: [],
     }
   }
 
@@ -22,8 +18,8 @@ class Test extends React.Component {
     let expr = "@SOBJECT(workflow/job)";
     let jobs = server.eval(expr);
     console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
-    console.log("test.js - load() jobs: ",jobs, "expr: ", expr, "server: ", server)
-    this.setState({jobs: jobs})
+    console.log("test.js - load() jobs: ", jobs, "expr: ", expr, "server: ", server)
+    this.setState({ jobs: jobs })
   }
 
   componentDidMount() {
@@ -34,20 +30,26 @@ class Test extends React.Component {
     return (
       <div className="job"> Test Page
         <div className="job-list">
+        
           {
-            this.state.jobs.map( (job, index) => (
+            this.state.jobs.map((job, index) => (
               <div key="{job.code}">
-                Job Code: <Link to={"/job_details/" + job.code }>{job.code}</Link>  <br/>
-                Name: {job.name} <br/>
+                Job Code: <Link to={"/job_details/" + job.code}>{job.code}</Link>  <br />
+                Name: {job.name} <br />
                 Status: {job.status}
-                <hr/>
+                <hr />
               </div>
             ))
           }
+        
         </div>
       </div>
     );
   }
+
+
+ 
+
 }
 
 export default Test;
