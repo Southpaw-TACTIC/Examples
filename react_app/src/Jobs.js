@@ -47,7 +47,7 @@ class Jobs extends React.Component {
                 <h3 class="card-title">{job.name}</h3>
                 <div>
                   Job Code:{" "}
-                  <Link to={"/job_details/" + job.code}>{job.code}</Link> <br />
+                  <Link to={"/JobDetails/" + job.code}>{job.code}</Link> <br />
                   Name: {job.name} <br />
                   Status: {job.status}
                 </div>

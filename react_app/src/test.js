@@ -34,7 +34,7 @@ class Test extends React.Component {
           {
             this.state.jobs.map((job, index) => (
               <div key="{job.code}">
-                Job Code: <Link to={"/job_details/" + job.code}>{job.code}</Link>  <br />
+                Job Code: <Link to={"/JobDetails/" + job.code}>{job.code}</Link>  <br />
                 Name: {job.name} <br />
                 Status: {job.status}
                 <hr />

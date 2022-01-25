@@ -24,7 +24,7 @@ return (
     <Routes>
           <Route  path="/jobs" element={<Jobs />} />
           <Route  path="/test" element={<Test />} />
-          <Route  path="/job_details/:job_code" element={<JobDetails />} /> 
+          <Route  path="/job_details/:job.code" element={<JobDetails />} /> 
           <Route  path="/jobassets" element={<JobAssetList />} />
           <Route path="/assets" element={<AssetList />} />
           <Route  path="/" render={() => <Navigate to="/jobs" />} />
@@ -35,8 +35,9 @@ return (
 
 
 ReactDOM.render(
- 
+  <React.StrictMode>
   <App />
+</React.StrictMode>
 ,
   document.getElementById('root')
 );
