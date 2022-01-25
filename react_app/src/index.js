@@ -24,10 +24,10 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/jobs" component={Jobs} />
           <Route exact path="/test" component={Test} />
-          <Route exact path="/job_details/:job_code" component={JobDetails} />
+          <Route exact path="/job_details/:job_code" component={JobDetails} /> 
           <Route exact path="/jobassets" component={JobAssetList} />
-          <Route exact path="/assets" component={AssetList} />
-          <Redirect from="/" to="/jobs" exact />
+          <Route exact path="/assets" component={AssetList} />    
+          <Route path="/" render={() => <Redirect to="/jobs" />} />
         </Switch>
       </Router>
     );
@@ -35,8 +35,8 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
   <App />
-</React.StrictMode>,
+</Router>,
   document.getElementById('root')
 );
