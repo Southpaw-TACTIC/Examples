@@ -15,7 +15,6 @@ import JobAssetList from './JobAssetList';
 
 import './index.css';
 
-
 function App() {  
 return (
     <BrowserRouter>
@@ -32,13 +31,9 @@ return (
     );
   }
 
-
 ReactDOM.render(
-
   <React.StrictMode>
     <App />
-  </React.StrictMode>
-
-,
+  </React.StrictMode>,
   document.getElementById('root')
 );
