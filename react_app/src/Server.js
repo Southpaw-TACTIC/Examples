@@ -14,32 +14,26 @@ let base_endpoint = server_url+ "/" + site + "/" + project + "/REST";
 
 const get_ticket = async () => {
     if (ticket !== "") {
-        console.log("ticket exists:" + ticket)
         return ticket;
     }
     ticket = await generateTicket();
-    console.log("Server.js - get_ticket ticket: ", ticket);
     return ticket;
 }
 
 const generateTicket = async() => {
 
-    let url = base_endpoint + "/get_ticket";  //something is wrong with this
-    console.log("Server.js - inside generateTicket url: ", url);
-    // let headers = {
-    //     Accept: 'application/json'
-    // }
+    let url = base_endpoint + "/get_ticket";  
+
     let data = {
         'login': user,
         'password': password,
     };
-    console.log("Server.js - inside generateTicket data: ", data);
+ 
     let r = await fetch( url, {
         method: 'POST',
         body: JSON.stringify(data),
     } )
     let ticket = await r.json()
-    console.log("Server.js - inside generateTicket ticket: ", ticket);
     return ticket;
 }
 
@@ -56,14 +50,12 @@ const get_project = () => {
 }
 
 const get_server = () => {
-    console.log("Using get_server from tactic.js.")
     let server = TACTIC.get();
     server.set_server(server_url)
     server.set_site(site)
     server.set_project(project)
 
     if (ticket !== "") {
-        console.log("ticket exists:" + ticket)
         server.set_ticket(ticket);
         return server;
     }
@@ -80,9 +72,7 @@ const get_server = () => {
 const call_tactic = async (method, kwargs) => {
 
     let data = kwargs
-    console.log("Server.js - inside call_tactic kwargs: ", kwargs);
     let url = get_endpoint() + "/" + method
-    console.log("Server.js - inside call_tactic ticket: ", ticket, "url: ", url);
 
     let headers = {
         "Authorization": "Bearer " + ticket,
@@ -105,12 +95,4 @@ const call_tactic = async (method, kwargs) => {
 
 }
 
-const GetJobCode = () => {
-    console.log("Server.js - GetJobCode function at beginning")
-  let { code } = useParams();  
-    console.log("Server.js - GetJobCode function job_code: ", code)
-  return code;
-  }
-
-
-export { get_endpoint, get_ticket, call_tactic, get_server, get_server_url, get_project, GetJobCode };
+export { get_endpoint, get_ticket, call_tactic, get_server, get_server_url, get_project };

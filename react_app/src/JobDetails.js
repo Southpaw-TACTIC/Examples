@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
-import { call_tactic} from "./Server";
+import React from "react";
+import { call_tactic } from "./Server";
 import './JobDetails.css';
 
 const GetJobCode = () => {
-    let urlStr = window.location.pathname;
-    let jobId = urlStr.substring(urlStr.lastIndexOf("/") + 1);
-  return jobId;
+  let urlStr = window.location.pathname;
+  let jobId = urlStr.substring(urlStr.lastIndexOf("/") + 1);
+return jobId;
 }
 class JobDetails extends React.Component {
 
@@ -48,7 +48,6 @@ class JobDetails extends React.Component {
     };
     let sobjects = await call_tactic("query", kwargs)
     this.setState({tasks: sobjects})
-
   }
 
   componentDidMount() {
@@ -64,7 +63,6 @@ class JobDetails extends React.Component {
               <div job={job} key={job.id}>
                 <div className="card item">
                   <div className="card-body">
-
                     <h2> {job.name} </h2>
                     Job Code: {job.code} <br/>
                     Status: {job.status}
@@ -81,7 +79,6 @@ class JobDetails extends React.Component {
                         <p>Timestamp: {tasks.timestamp}</p>
                       </div>
                     </div>
-
                   ))
                 }
               </div>
