@@ -1,24 +1,18 @@
 import React, { useRef } from 'react';
-import { useParams } from 'react-router';
+
 
 import { get_ticket, call_tactic} from "./Server";
 
 import './JobDetails.css';
 
-// const GetJobCode = () => {
-//   console.log("JobDetails.js - GetJobCode beginning")
-  
-//   let currentJob = useRef(null);
-//  console.log("JobDetails.js - GetJobCode job: ", currentJob.current);
-//   return currentJob;
-// }
-
 const GetJobCode = () => {
-    console.log("Server.js - GetJobCode function at beginning")
-    const { job_code } = useParams() 
-    console.log("Server.js - GetJobCode function job_code: ", job_code)
-    return job_code;
-  }
+    let str = window.location.pathname;
+    let jobId = str.substring(str.lastIndexOf("/") + 1);
+    console.log("JobDetails.js - getJob str: ", str)
+  return jobId;
+}
+
+
 
 class JobDetails extends React.Component {
 
@@ -43,8 +37,9 @@ class JobDetails extends React.Component {
   getJob = async () => {
   
     console.log("JobDetails.js - getJob beginning")
+  
     //let jobId = this.props.match.params.job.id; //depreciated
-    let jobId = await GetJobCode();
+    let jobId =  GetJobCode();
     console.log("JobDetails.js - getJob jobId: ", jobId)
     // let job_code = await get_ticket();
     // console.log("JobDetails.js - getJob job_code: ", job_code)
@@ -53,7 +48,7 @@ class JobDetails extends React.Component {
     let search_type = "workflow/job"
     let kwargs = {
         search_type: search_type,
-       filters: [['code', jobId.code]], // this caused the problem
+       filters: [['code', jobId]], // this caused the problem
     };
     let sobjects = await call_tactic("query", kwargs);
     console.log("JobDetails.js - getJob sobjects: ",sobjects);
@@ -62,7 +57,7 @@ class JobDetails extends React.Component {
 
   getTasks = async () => {
   //  console.log("JobDetails.js - getTasks beginning")
-    let job_id = "JOB00003"
+    let job_id = GetJobCode();
 
     // get tasks
     let search_type = "sthpw/task"
@@ -82,8 +77,8 @@ class JobDetails extends React.Component {
 
   render() {
     return (
-      <div class="job">
-        <div class="job-detail">
+      <div className="job">
+        <div className="job-detail">
           <h1>Hello Richard</h1>
           <p>Lets add some other stuff</p>
 
@@ -91,8 +86,8 @@ class JobDetails extends React.Component {
           {
             this.state.job.map( (job, index) => (
               <div job={job} key={job.id}>
-                <div class="card item">
-                  <div class="card-body">
+                <div className="card item">
+                  <div className="card-body">
 
                     <h2> {job.name} </h2>
                     Job Code: {job.code} <br/>
@@ -103,8 +98,8 @@ class JobDetails extends React.Component {
                 <h3>Tasks</h3>
                 {
                   this.state.tasks.map((tasks,task_index) => (
-                    <div class="card item">
-                      <div class="card-body">
+                    <div tasks={tasks} key={tasks.id} className="card item">
+                      <div className="card-body">
                         <h4>Process: {tasks.process}</h4> <br/>
                         <h5>Assigned: {tasks.assigned}</h5>
                         <p>Timestamp: {tasks.timestamp}</p>

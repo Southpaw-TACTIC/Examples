@@ -105,6 +105,12 @@ const call_tactic = async (method, kwargs) => {
 
 }
 
+const GetJobCode = () => {
+    console.log("Server.js - GetJobCode function at beginning")
+  let { code } = useParams();  
+    console.log("Server.js - GetJobCode function job_code: ", code)
+  return code;
+  }
 
 
-export { get_endpoint, get_ticket, call_tactic, get_server, get_server_url, get_project };
+export { get_endpoint, get_ticket, call_tactic, get_server, get_server_url, get_project, GetJobCode };

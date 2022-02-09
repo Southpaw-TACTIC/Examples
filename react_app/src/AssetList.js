@@ -112,17 +112,17 @@ class AssetList extends React.Component {
 
     render() {
         return (
-            <div class="asset">
-                <div class="searchForm">
+            <div className="asset">
+                <div className="searchForm">
                     <input type="text" id="filter" placeholder="Search for..." onChange={this.handleInputChange}/>
                     <button onClick={e => this.get_asset_info()}>Search</button>
                 </div>
-                <div class="asset-list">
+                <div className="asset-list">
                     {
                         this.state.assets.map( (asset, index) => (
-                            <div key="{asset.code}" class="card item">
-                                <div class="card-body">
-                                    <h3 class="card-title">{asset.name}</h3>
+                            <div asset={asset} key={asset.code} className="card item">
+                                <div className="card-body">
+                                    <h3 className="card-title">{asset.name}</h3>
                                     <div>
                                         <div>
                                             Asset Code: {asset.code} <br/>
@@ -131,7 +131,7 @@ class AssetList extends React.Component {
                                         </div>
                                         <div>
                                             File:<br/>
-                                            <div class="asset-icon">
+                                            <div className="asset-icon">
                                                 <a href={get_server_url() + asset.snapshot.main[0]} target="_blank" rel="noopener noreferrer">
                                                 {
                                                     typeof asset.snapshot.web !=='undefined' ?

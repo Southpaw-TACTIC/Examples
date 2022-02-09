@@ -38,12 +38,12 @@ class Jobs extends React.Component {
 
   render() {
     return (
-      <div class="job">
-        <div class="job-list">
+      <div className="job">
+        <div className="job-list">
           {this.state.jobs.map((job, index) => (
-            <div job={job} key={job.id} class="card item">
-              <div class="card-body">
-                <h3 class="card-title">{job.name}</h3>
+            <div job={job} key={job.id} className="card item">
+              <div className="card-body">
+                <h3 className="card-title">{job.name}</h3>
                 <div>
                   Job Code:{" "}
                   <Link to={"/job_details/" + job.code}>{job.code}</Link> <br />
