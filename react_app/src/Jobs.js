@@ -1,6 +1,5 @@
 import React from "react";
-//import { useState } from 'react'
-//import ReactDOM from "react-dom";
+
 
 import { Link } from "react-router-dom";
 
@@ -29,7 +28,7 @@ class Jobs extends React.Component {
       search_type: search_type,
     };
     let sobjects = await call_tactic("query", kwargs);
-    console.log("Jobs.js - in getJobs  sobjects: ",sobjects);
+    console.log("Jobs.js - in getJobs  sobjects: ",sobjects)
     this.setState({ jobs: sobjects });
   };
 
@@ -42,12 +41,12 @@ class Jobs extends React.Component {
       <div class="job">
         <div class="job-list">
           {this.state.jobs.map((job, index) => (
-            <div key="{job.code}" class="card item">
+            <div job={job} key={job.id} class="card item">
               <div class="card-body">
                 <h3 class="card-title">{job.name}</h3>
                 <div>
                   Job Code:{" "}
-                  <Link to={"/JobDetails/" + job.code}>{job.code}</Link> <br />
+                  <Link to={"/job_details/" + job.code}>{job.code}</Link> <br />
                   Name: {job.name} <br />
                   Status: {job.status}
                 </div>
