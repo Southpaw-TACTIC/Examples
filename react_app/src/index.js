@@ -4,8 +4,7 @@ import Navbar from './Navbar';
 import {
   BrowserRouter,
   Routes,
-  Route,
-  Navigate
+  Route
 } from 'react-router-dom';
 
 import JobDetails from './JobDetails';
@@ -19,25 +18,27 @@ import './index.css';
 
 function App() {  
 return (
-      <BrowserRouter>
-    <Navbar />
-    <Routes>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
           <Route  path="/jobs" element={<Jobs />} />
-          <Route  path="/test" element={<Test />} />
-          <Route  path="/job_details/:job.code" element={<JobDetails />} /> 
+            <Route  path="/job_details/:job_code" element={<JobDetails />} /> 
           <Route  path="/jobassets" element={<JobAssetList />} />
-          <Route path="/assets" element={<AssetList />} />
-          <Route  path="/" render={() => <Navigate to="/jobs" />} />
+          <Route  path="/assets" element={<AssetList />} />
+          <Route  path="/test" element={<Test />} />
+          <Route  path="*" element={<Jobs />} />
        </Routes>
-      </BrowserRouter>
+     </BrowserRouter>
     );
   }
 
 
 ReactDOM.render(
+
   <React.StrictMode>
-  <App />
-</React.StrictMode>
+    <App />
+  </React.StrictMode>
+
 ,
   document.getElementById('root')
 );

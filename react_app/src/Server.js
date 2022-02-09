@@ -1,5 +1,7 @@
 import { TACTIC } from "./assets/js/tactic";
 
+import { useParams} from 'react-router';
+
 let server_url = "https://portal.southpawtech.com"
 let site = "trial"
 let project = "api_test"
@@ -23,7 +25,7 @@ const get_ticket = async () => {
 const generateTicket = async() => {
 
     let url = base_endpoint + "/get_ticket";  //something is wrong with this
-    console.log("Sever.js - inside generateTicket url: ", url);
+    console.log("Server.js - inside generateTicket url: ", url);
     // let headers = {
     //     Accept: 'application/json'
     // }
@@ -31,13 +33,13 @@ const generateTicket = async() => {
         'login': user,
         'password': password,
     };
-    console.log("Sever.js - inside generateTicket data: ", data);
+    console.log("Server.js - inside generateTicket data: ", data);
     let r = await fetch( url, {
         method: 'POST',
         body: JSON.stringify(data),
     } )
     let ticket = await r.json()
-    console.log("Sever.js - inside generateTicket ticket: ", ticket);
+    console.log("Server.js - inside generateTicket ticket: ", ticket);
     return ticket;
 }
 
@@ -80,7 +82,7 @@ const call_tactic = async (method, kwargs) => {
     let data = kwargs
     console.log("Server.js - inside call_tactic kwargs: ", kwargs);
     let url = get_endpoint() + "/" + method
-    console.log("server.js - inside call_tactic ticket: ", ticket, "url: ", url);
+    console.log("Server.js - inside call_tactic ticket: ", ticket, "url: ", url);
 
     let headers = {
         "Authorization": "Bearer " + ticket,
@@ -102,5 +104,7 @@ const call_tactic = async (method, kwargs) => {
     }
 
 }
+
+
 
 export { get_endpoint, get_ticket, call_tactic, get_server, get_server_url, get_project };
