@@ -1,19 +1,12 @@
 import React, { useRef } from 'react';
-
-
-import { get_ticket, call_tactic} from "./Server";
-
+import { call_tactic} from "./Server";
 import './JobDetails.css';
 
 const GetJobCode = () => {
-    let str = window.location.pathname;
-    let jobId = str.substring(str.lastIndexOf("/") + 1);
-    console.log("JobDetails.js - getJob str: ", str)
+    let urlStr = window.location.pathname;
+    let jobId = urlStr.substring(urlStr.lastIndexOf("/") + 1);
   return jobId;
 }
-
-
-
 class JobDetails extends React.Component {
 
   constructor(props) {
@@ -24,26 +17,16 @@ class JobDetails extends React.Component {
     };
   }
 
-
-
   load = async () => {
     //get a job info
     this.getJob()
     //get tasks
     this.getTasks()
-   // console.log("JobDetails.js - load at end: ")
   }
 
   getJob = async () => {
-  
-    console.log("JobDetails.js - getJob beginning")
-  
-    //let jobId = this.props.match.params.job.id; //depreciated
+    //let jobId = this.props.match.params.job.id; //depreciated React v.6
     let jobId =  GetJobCode();
-    console.log("JobDetails.js - getJob jobId: ", jobId)
-    // let job_code = await get_ticket();
-    // console.log("JobDetails.js - getJob job_code: ", job_code)
- 
     //query for the job
     let search_type = "workflow/job"
     let kwargs = {
@@ -56,9 +39,7 @@ class JobDetails extends React.Component {
   }
 
   getTasks = async () => {
-  //  console.log("JobDetails.js - getTasks beginning")
     let job_id = GetJobCode();
-
     // get tasks
     let search_type = "sthpw/task"
     let kwargs = {
@@ -66,7 +47,6 @@ class JobDetails extends React.Component {
         filters: [['search_code', job_id]],
     };
     let sobjects = await call_tactic("query", kwargs)
-   // console.log("JobDetails.js - getTasks sobjects: ",sobjects);
     this.setState({tasks: sobjects})
 
   }
@@ -79,10 +59,6 @@ class JobDetails extends React.Component {
     return (
       <div className="job">
         <div className="job-detail">
-          <h1>Hello Richard</h1>
-          <p>Lets add some other stuff</p>
-
-          <div></div>
           {
             this.state.job.map( (job, index) => (
               <div job={job} key={job.id}>

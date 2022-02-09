@@ -137,20 +137,16 @@ class JobAssetList extends React.Component {
                                                     <img src={get_server_url() + asset.snapshot.web[0]} alt="snapshot" />
                                                     : "Download"
                                                 }
-
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-                        ))
-                    }
+                        ))}
                 </div>
             </div>
-        );
-    }
+        );}
   }
 
 export default JobAssetList;
