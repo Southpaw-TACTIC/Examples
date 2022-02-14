@@ -5,7 +5,7 @@ import './JobDetails.css';
 const GetJobCode = () => {
   let urlStr = window.location.pathname;
   let jobId = urlStr.substring(urlStr.lastIndexOf("/") + 1);
-return jobId;
+  return jobId;
 }
 class JobDetails extends React.Component {
 
