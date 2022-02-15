@@ -40,6 +40,7 @@ class Jobs extends React.Component {
     return (
       <div className="job">
         <div className="job-list">
+          <p>TESTING</p>
           {this.state.jobs.map((job, index) => (
             <div job={job} key={job.id} className="card item">
               <div className="card-body">

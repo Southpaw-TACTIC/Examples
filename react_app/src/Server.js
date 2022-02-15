@@ -1,6 +1,6 @@
 import { TACTIC } from "./assets/js/tactic";
 
-import { useParams} from 'react-router';
+//import { useParams} from 'react-router';
 
 let server_url = "https://portal.southpawtech.com"
 let site = "trial"
