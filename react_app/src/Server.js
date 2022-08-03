@@ -5,8 +5,8 @@ import { TACTIC } from "./assets/js/tactic";
 let server_url = "https://portal.southpawtech.com"
 let site = "trial"
 let project = "api_test"
-let user = "trial_api"
-let password = ""
+let user = "" //*** contact Southpaw Tech for your free trial contact@southpawtech.com ***//
+let password = "" //*** contact Southpaw Tech for your free trial contact@southpawtech.com ***//
 
 let ticket = ""
 
