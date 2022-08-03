@@ -6,7 +6,7 @@ let server_url = "https://portal.southpawtech.com"
 let site = "trial"
 let project = "api_test"
 let user = "trial_api"
-let password = "tactic123"
+let password = ""
 
 let ticket = ""
 
